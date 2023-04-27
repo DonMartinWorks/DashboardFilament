@@ -97,7 +97,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // CREATE ADMINS & USERS
         User::create([
-            'name' => 'super admin',
+            'name' => 'Super Admin',
             'is_admin' => 1,
             'email' => 'super@admin.com',
             'email_verified_at' => now(),
@@ -106,7 +106,7 @@ class RolesAndPermissionsSeeder extends Seeder
         ])->assignRole($superAdminRole);
 
         User::create([
-            'name' => 'admin',
+            'name' => 'Admin',
             'is_admin' => 1,
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
@@ -115,7 +115,7 @@ class RolesAndPermissionsSeeder extends Seeder
         ])->assignRole($adminRole);
 
         User::create([
-            'name' => 'moderator',
+            'name' => 'Moderator',
             'is_admin' => 1,
             'email' => 'moderator@admin.com',
             'email_verified_at' => now(),
@@ -124,7 +124,7 @@ class RolesAndPermissionsSeeder extends Seeder
         ])->assignRole($moderatorRole);
 
         User::create([
-            'name' => 'developer',
+            'name' => 'Developer',
             'is_admin' => 1,
             'email' => 'developer@admin.com',
             'email_verified_at' => now(),
@@ -132,15 +132,10 @@ class RolesAndPermissionsSeeder extends Seeder
             'remember_token' => Str::random(10),
         ])->assignRole($developerRole);
 
-        for ($i = 1; $i < 50; $i++) {
-            User::create([
-                'name' => 'Test ' . $i,
-                'is_admin' => 0,
-                'email' => 'test' . $i . '@test.com',
-                'email_verified_at' => now(),
-                'password' => Hash::make('password'), // password
-                'remember_token' => Str::random(10),
-            ])->assignRole($userRole);
+
+        # Para crear usuarios normales genericos
+        for ($i = 1; $i < 11; $i++) {
+            User::factory()->create()->assignRole($userRole);
         }
     }
 }
